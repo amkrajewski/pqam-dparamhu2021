@@ -21,12 +21,10 @@ des_surf <- function (comp=comp){
   for (i in seq(n.feature)){
     parameter.surf[,,i] <- comp_ele%*%as.matrix(feature.surf.select[,, i])
   }
-  
-  order <- c(1)
+
   size <- 2*n.feature.all
   predictors <- array(0, c(n.ob, size))
   for (i in seq(n.ob)){
-    avg <- NULL
     nonzvec <- which(comp_ele[i,]!=0)
     avg1 <- NULL
     for (k in seq(n.feature)){
