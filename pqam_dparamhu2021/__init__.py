@@ -1,1 +1,1 @@
-from pqam_dparamhu2021.compositionalModel import *
+from pqam_dparamhu2021.model import *
