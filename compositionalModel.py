@@ -9,8 +9,9 @@ r = robjects.r
 r['source']('HEA_pred.R')
 heaPredFunc = robjects.globalenv['HEA_pred']
 
-#(Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)
-elementsSpace = ['Ti','Zr','Hf','V','Nb','Ta','Mo','W','Re','Ru']
+# (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)
+elementsSpace = ['Ti', 'Zr', 'Hf', 'V', 'Nb', 'Ta', 'Mo', 'W', 'Re', 'Ru']
+
 
 def predict(comp: Union[str, Composition]) -> list:
     """
@@ -23,6 +24,7 @@ def predict(comp: Union[str, Composition]) -> list:
     Returns:
         A float list representing the predicted GSF, Surd, and D parameter.
     """
+
     assert isinstance(comp, (str, Composition)), \
         "comp must be a string or a pymatgen Composition object."
     if isinstance(comp, str):
