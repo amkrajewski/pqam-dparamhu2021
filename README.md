@@ -1,6 +1,25 @@
-# pqam-dparamhu2021
-PyQAlloy-compatible Model for D Parameter Prediction Based on Yong-Jie Hu 2021 (10.1016/j.actamat.2021.116800)
+# PyQAlloy-compatible Model for D Parameter prediction based on Hu2021
 
+This repository contains a PyQAlloy-compatible compositionalModel for D Parameter Prediction Based on Yong-Jie Hu 2021 (10.1016/j.actamat.2021.116800) that 
+accepts a chemical formula of an alloy or a pymatgen Composition object and returns the predicted Genralized Stacking Fault Energy (GSF), Surface Energy (Surf), and the 
+calculated D Parameter.
+
+## Attribution
+
+This repository has been created by Adam M. Krajewski (https://orcid.org/0000-0002-2266-0099) and is licensed under the MIT License. 
+**Please cite this repository if you use it in your work.**
+
+The featurizer and predictive model (HEA_pred.R and dependencies) have been optimized across and re-styled by Adam M.
+Krajewski based on code originally developed by Young-Jie Hu (https://orcid.org/0000-0003-1500-4015) et al. for their
+journal publication and published in Materials Commons at https://doi.org/10.13011/m3-rkg0-zh65, where original code
+can be accessed,  distributed under ODC Open Database License (ODbL) v1.0. **Please cite this publication as well:** 
+- Yong-Jie Hu, Aditya Sundar, Shigenobu Ogata, Liang Qi, Screening of generalized stacking fault energies, 
+surface energies and intrinsic ductile potency of refractory multicomponent alloys, Acta Materialia, 
+Volume 210, 2021, 116800, https://doi.org/10.1016/j.actamat.2021.116800
+
+The gbm-locfit package (Gradient Boosting Machine-Locfit: A GBM framework using local regresssion via Locfit) has been 
+developed by Materials Project in 2016 and is distributed under the terms of the MIT License. Details can be found in
+its code.
 
 
 ## Hu's README File
