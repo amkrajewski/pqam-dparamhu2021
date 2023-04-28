@@ -4,17 +4,17 @@ from pymatgen.core import Composition
 from typing import Union, List
 from importlib import resources
 
+path = str(resources.files('pqam_dparamhu2021'))
 
 locfit = importr('locfit')
 
 r = robjects.r
-r['source']('pqam_dparamhu2021/HEA_pred.R')
+r['source'](path+'/HEA_pred.R')
 heaPredFunc = robjects.globalenv['HEA_pred']
 
 # (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)
 elementsSpace = ['Ti', 'Zr', 'Hf', 'V', 'Nb', 'Ta', 'Mo', 'W', 'Re', 'Ru']
 
-path = str(resources.files('pqam_dparamhu2021'))
 
 def predict(comp: Union[str, Composition]) -> list:
     """
