@@ -1,11 +1,11 @@
 HEA_pred <- function(composition = composition) {
-  source("descriptors_gen_dev_predict_surf.R")
-  source("descriptors_gen_dev_predict_gsf.R")
-  source("gbm-locfit.R")
+  source("pyqam_dparamhu2021/descriptors_gen_dev_predict_surf.R")
+  source("pyqam_dparamhu2021/descriptors_gen_dev_predict_gsf.R")
+  source("pyqam_dparamhu2021/gbm-locfit.R")
 
-  load("locfit_3_var_all.Rdata")
+  load("pyqam_dparamhu2021/locfit_3_var_all.Rdata")
   model_gsf <- model
-  load("locfit_surf_2_var_all.Rdata")
+  load("pyqam_dparamhu2021/locfit_surf_2_var_all.Rdata")
   model_surf <- model
 
   descriptors.gsf <- des_gsf(comp = composition)

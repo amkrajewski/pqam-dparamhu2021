@@ -6,7 +6,7 @@ from typing import Union, List
 locfit = importr('locfit')
 
 r = robjects.r
-r['source']('HEA_pred.R')
+r['source']('pyqam_dparamhu2021/HEA_pred.R')
 heaPredFunc = robjects.globalenv['HEA_pred']
 
 # (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)

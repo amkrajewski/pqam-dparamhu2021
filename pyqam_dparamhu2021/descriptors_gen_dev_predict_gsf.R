@@ -1,25 +1,25 @@
-des_surf <- function(comp = comp) {
+des_gsf <- function(comp = comp) {
   comp_n <- comp / sum(comp)
   a <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
   data.1 <- data.frame(rbind(a, comp_n))
 
-  file.3 <- "elemental_features.csv"
+  file.3 <- "pyqam_dparamhu2021/elemental_features.csv"
   data.3 <- read.csv(file = file.3, header = T)
   para_ele <- as.matrix(data.3[, 2:4])
 
-  load(file = "features_surf.Rdata")
+  load(file = "pyqam_dparamhu2021/features_gsf.Rdata")
 
-  feature.surf.select <- feature.surf.all
+  feature.gsf.select <- feature.gsf.all
   n.ob <- length(data.1[, 1])
-  n.feature <- length(feature.surf.select[1, 1,])
+  n.feature <- length(feature.gsf.select[1, 1,])
   n.feature.ele <- length(para_ele[1,])
   n.feature.all <- n.feature + n.feature.ele
 
-  parameter.surf <- array(0, c(n.ob, 10, n.feature))
+  parameter.gsf <- array(0, c(n.ob, 10, n.feature))
 
   comp_ele <- as.matrix(data.1)
   for (i in seq(n.feature)) {
-    parameter.surf[, , i] <- comp_ele %*% as.matrix(feature.surf.select[, , i])
+    parameter.gsf[, , i] <- comp_ele %*% as.matrix(feature.gsf.select[, , i])
   }
 
   size <- 2 * n.feature.all
@@ -28,7 +28,7 @@ des_surf <- function(comp = comp) {
     nonzvec <- which(comp_ele[i,] != 0)
     avg1 <- NULL
     for (k in seq(n.feature)) {
-      para.temp <- parameter.surf[i, nonzvec, k]
+      para.temp <- parameter.gsf[i, nonzvec, k]
       avgtemp <- para.temp %*% comp_ele[i, nonzvec]
       dvetemp <- ((1 / (1 - sum(comp_ele[i, nonzvec]^2))) * ((para.temp - avgtemp[1])^2 %*% comp_ele[i, nonzvec]))^(1 / 2)
       avg1 <- c(avg1, avgtemp, dvetemp)
@@ -44,11 +44,10 @@ des_surf <- function(comp = comp) {
     predictors[i,] <- avg
   }
 
+
   all <- data.frame(predictors)
   all[is.na(all)] <- 0
   return(all)
 }
-
-
 
 
