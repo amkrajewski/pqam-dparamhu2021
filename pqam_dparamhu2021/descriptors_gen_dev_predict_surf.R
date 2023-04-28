@@ -1,13 +1,13 @@
-des_surf <- function(comp = comp) {
+des_surf <- function(comp = comp, path) {
   comp_n <- comp / sum(comp)
   a <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
   data.1 <- data.frame(rbind(a, comp_n))
 
-  file.3 <- "pqam_dparamhu2021/elemental_features.csv"
+  file.3 <- paste(path,"/elemental_features.csv", sep = "")
   data.3 <- read.csv(file = file.3, header = T)
   para_ele <- as.matrix(data.3[, 2:4])
 
-  load(file = "pqam_dparamhu2021/features_surf.Rdata")
+  load(file = paste(path,"/features_surf.Rdata", sep = ""))
 
   feature.surf.select <- feature.surf.all
   n.ob <- length(data.1[, 1])

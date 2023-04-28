@@ -2,6 +2,8 @@ from rpy2.robjects.packages import importr
 import rpy2.robjects as robjects
 from pymatgen.core import Composition
 from typing import Union, List
+from importlib import resources
+
 
 locfit = importr('locfit')
 
@@ -12,6 +14,7 @@ heaPredFunc = robjects.globalenv['HEA_pred']
 # (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)
 elementsSpace = ['Ti', 'Zr', 'Hf', 'V', 'Nb', 'Ta', 'Mo', 'W', 'Re', 'Ru']
 
+path = str(resources.files('pqam_dparamhu2021'))
 
 def predict(comp: Union[str, Composition]) -> list:
     """
@@ -34,8 +37,9 @@ def predict(comp: Union[str, Composition]) -> list:
         "The composition must be in the composition space of (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)."
 
     compList = [comp.get_atomic_fraction(e) for e in elementsSpace]
-    result = heaPredFunc(robjects.FloatVector(compList))
+    result = heaPredFunc(robjects.FloatVector(compList), path)
     return list(result)
+
 
 def cite() -> List[str]:
     """

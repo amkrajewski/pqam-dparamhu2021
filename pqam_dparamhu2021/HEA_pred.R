@@ -1,15 +1,15 @@
-HEA_pred <- function(composition = composition) {
-  source("pqam_dparamhu2021/descriptors_gen_dev_predict_surf.R")
-  source("pqam_dparamhu2021/descriptors_gen_dev_predict_gsf.R")
-  source("pqam_dparamhu2021/gbm-locfit.R")
+HEA_pred <- function(composition = composition, path) {
+  source(paste(path,"/descriptors_gen_dev_predict_surf.R", sep = ""))
+  source(paste(path,"/descriptors_gen_dev_predict_gsf.R", sep = ""))
+  source(paste(path,"/gbm-locfit.R", sep = ""))
 
-  load("pqam_dparamhu2021/locfit_3_var_all.Rdata")
+  load(paste(path,"/locfit_3_var_all.Rdata", sep = ""))
   model_gsf <- model
-  load("pqam_dparamhu2021/locfit_surf_2_var_all.Rdata")
+  load(paste(path,"/locfit_surf_2_var_all.Rdata", sep = ""))
   model_surf <- model
 
-  descriptors.gsf <- des_gsf(comp = composition)
-  descriptors.surf <- des_surf(comp = composition)
+  descriptors.gsf <- des_gsf(comp = composition, path = path)
+  descriptors.surf <- des_surf(comp = composition, path = path)
   sel <- c(1:26, 35:38)
   descriptors.gsf <- as.matrix(descriptors.gsf[, sel])
   descriptors.surf <- as.matrix(descriptors.surf[, sel])
