@@ -3,11 +3,11 @@ des_gsf <- function(comp = comp) {
   a <- c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
   data.1 <- data.frame(rbind(a, comp_n))
 
-  file.3 <- "pyqam_dparamhu2021/elemental_features.csv"
+  file.3 <- "pqam_dparamhu2021/elemental_features.csv"
   data.3 <- read.csv(file = file.3, header = T)
   para_ele <- as.matrix(data.3[, 2:4])
 
-  load(file = "pyqam_dparamhu2021/features_gsf.Rdata")
+  load(file = "pqam_dparamhu2021/features_gsf.Rdata")
 
   feature.gsf.select <- feature.gsf.all
   n.ob <- length(data.1[, 1])

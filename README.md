@@ -4,6 +4,19 @@ This repository contains a PyQAlloy-compatible compositionalModel for D Paramete
 accepts a chemical formula of an alloy or a pymatgen Composition object and returns the predicted Genralized Stacking Fault Energy (GSF), Surface Energy (Surf), and the 
 calculated D Parameter.
 
+## Install and use
+
+To run this model you will need **Python 3.9+** and **R 4.1.0+** installed on your system. If you have them, you can simply with:
+    
+    pip install pqam_dparamhu2021
+
+Then, use should be as simple as:
+
+    import pqam_dparamhu2021
+    
+    print(pqam_dparamhu2021.predict("W30 Mo25 Ta45"))
+
+
 ## Attribution
 
 This repository has been created by Adam M. Krajewski (https://orcid.org/0000-0002-2266-0099) and is licensed under the MIT License. 
