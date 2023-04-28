@@ -1,7 +1,7 @@
 from rpy2.robjects.packages import importr
 import rpy2.robjects as robjects
 from pymatgen.core import Composition
-from typing import Union
+from typing import Union, List
 
 locfit = importr('locfit')
 
@@ -36,3 +36,15 @@ def predict(comp: Union[str, Composition]) -> list:
     compList = [comp.get_atomic_fraction(e) for e in elementsSpace]
     result = heaPredFunc(robjects.FloatVector(compList))
     return list(result)
+
+def cite() -> List[str]:
+    """
+    Returns the citation of the model.
+
+    Returns:
+        A list of strings representing the citation of the model.
+    """
+    return ["Yong-Jie Hu, Aditya Sundar, Shigenobu Ogata, Liang Qi, Screening of generalized stacking fault energies, "
+            "surface energies and intrinsic ductile potency of refractory multicomponent alloys, Acta Materialia, "
+            "Volume 210, 2021, 116800, https://doi.org/10.1016/j.actamat.2021.116800."
+            ]
