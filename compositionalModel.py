@@ -1,0 +1,36 @@
+from rpy2.robjects.packages import importr
+import rpy2.robjects as robjects
+from pymatgen.core import Composition
+from typing import Union
+
+locfit = importr('locfit')
+
+r = robjects.r
+r['source']('HEA_pred.R')
+heaPredFunc = robjects.globalenv['HEA_pred']
+
+#(Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)
+elementsSpace = ['Ti','Zr','Hf','V','Nb','Ta','Mo','W','Re','Ru']
+
+def predict(comp: Union[str, Composition]) -> list:
+    """
+    Predicts the GSF, Surd, and resulting D parameter for a given HEA composition in the
+    composition space of (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru) based on Hu's 2021 model (10.1016/j.actamat.2021.116800).
+
+    Args:
+        comp: A composition string which will be cast into pymatgen Composition object or ready Composition object.
+
+    Returns:
+        A float list representing the predicted GSF, Surd, and D parameter.
+    """
+    assert isinstance(comp, (str, Composition)), \
+        "comp must be a string or a pymatgen Composition object."
+    if isinstance(comp, str):
+        comp = Composition(comp)
+
+    assert all([e.symbol in elementsSpace for e in comp.elements]), \
+        "The composition must be in the composition space of (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)."
+
+    compList = [comp.get_atomic_fraction(e) for e in elementsSpace]
+    result = heaPredFunc(robjects.FloatVector(compList))
+    return list(result)
