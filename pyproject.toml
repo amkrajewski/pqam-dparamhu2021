@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pqam_dparamhu2021"
-version = "0.1.0"
+version = "0.1.1"
 authors = [
   { name="Adam Krajewski", email="ak@psu.edu" },
 ]
