@@ -6,6 +6,10 @@ from importlib import resources
 
 path = str(resources.files('pqam_dparamhu2021'))
 
+base = importr('base')
+utils = importr('utils')
+utils.chooseCRANmirror(ind=71)
+
 locfit = importr('locfit')
 
 r = robjects.r
