@@ -6,7 +6,13 @@ calculated D Parameter.
 
 ## Install and use
 
-To run this model you will need **Python 3.9+** and **R 4.1.0+** installed on your system. If you have them, you can simply with:
+To run this model you will need **Python 3.9+** and **R 4.1.0+** installed on your system, ideally **before** you install
+this software. For Python, we recommend you use a virtual Conda environment, which chan be created with minimal effort 
+(see [Miniconda install instructions](https://docs.conda.io/en/latest/miniconda.html)). For R, it can be downloaded 
+pre-compiled from a _Comprehensive R Archive Network_ repository (e.g. [Case CRAN](https://cran.case.edu)) and should 
+work on most systems, including ARM-based (e.g. Apple M1).
+
+If you have Python and R, you can simply install this model with:
     
     pip install pqam_dparamhu2021
 
