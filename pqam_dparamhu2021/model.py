@@ -4,8 +4,6 @@ from pymatgen.core import Composition
 from typing import Union, List
 from importlib import resources
 
-path = str(resources.files('pqam_dparamhu2021'))
-
 base = importr('base')
 utils = importr('utils')
 utils.chooseCRANmirror(ind=71)
@@ -13,7 +11,13 @@ utils.chooseCRANmirror(ind=71)
 locfit = importr('locfit')
 
 r = robjects.r
+path = str(resources.files('pqam_dparamhu2021'))
 r['source'](path+'/HEA_pred.R')
+# Initialize the models
+heaPredInit = robjects.globalenv['init']
+heaPredInit(path)
+
+# Load the prediction function
 heaPredFunc = robjects.globalenv['HEA_pred']
 
 # (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)
