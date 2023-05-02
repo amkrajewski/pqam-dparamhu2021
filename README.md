@@ -22,6 +22,12 @@ Then, use should be as simple as:
     
     print(pqam_dparamhu2021.predict("W30 Mo25 Ta45"))
 
+***
+
+In some cases, required `locfit` R package may not be installed automatically. If you get an error message about it,
+try to go to your R console, typically by typing `R` in your terminal, and install it manually with:
+
+    install.packages("locfit")
 
 ## Attribution
 
