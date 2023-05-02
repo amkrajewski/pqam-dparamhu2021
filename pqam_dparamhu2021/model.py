@@ -6,8 +6,6 @@ from importlib import resources
 
 base = importr('base')
 utils = importr('utils')
-utils.chooseCRANmirror(ind=71)
-
 locfit = importr('locfit')
 
 r = robjects.r
