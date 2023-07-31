@@ -22,16 +22,18 @@ heaPredFunc = robjects.globalenv['HEA_pred']
 elementsSpace = ['Ti', 'Zr', 'Hf', 'V', 'Nb', 'Ta', 'Mo', 'W', 'Re', 'Ru']
 
 
-def predict(comp: Union[str, Composition]) -> list:
+def predict(
+        comp: Union[Composition, str],
+        outputType: str = "array") -> Union[dict, list]:
     """
-    Predicts the GSF, Surd, and resulting D parameter for a given HEA composition in the
+    Predicts the GSF, Surf, and resulting D parameter for a given HEA composition in the
     composition space of (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru) based on Hu's 2021 model (10.1016/j.actamat.2021.116800).
 
     Args:
         comp: A composition string which will be cast into pymatgen Composition object or ready Composition object.
 
     Returns:
-        A float list representing the predicted GSF, Surd, and D parameter.
+        A float list representing the predicted GSF, Surf, and D parameter.
     """
 
     assert isinstance(comp, (str, Composition)), \
@@ -44,7 +46,18 @@ def predict(comp: Union[str, Composition]) -> list:
 
     compList = [comp.get_atomic_fraction(e) for e in elementsSpace]
     result = heaPredFunc(robjects.FloatVector(compList), path)
-    return list(result)
+    result = list(result)
+    
+    assert len(result)==3
+
+    if outputType == "array":
+        return result
+    elif outputType == "dict":
+        return {"gfse": result[0],
+                "surf": result[1],
+                "dparam": result[2]}
+    else:
+        raise ValueError("Not recognized output type requested.")
 
 
 def cite() -> List[str]:
