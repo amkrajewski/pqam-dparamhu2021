@@ -3,6 +3,7 @@ import rpy2.robjects as robjects
 from pymatgen.core import Composition
 from typing import Union, List
 from importlib import resources
+import sys
 
 base = importr('base')
 utils = importr('utils')
