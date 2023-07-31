@@ -32,9 +32,11 @@ def predict(
 
     Args:
         comp: A composition string which will be cast into pymatgen Composition object or ready Composition object.
-
+        outputType: A setting to select whether the model will output a minimalistic ordered array of values (default) 
+            or dictionary of labeled values. Currently implemented options are ['array', 'dict'] and the first one is 
+            default.
     Returns:
-        A float list representing the predicted GSF, Surf, and D parameter.
+        A float list representing the predicted GSF, Surf, and D parameter. Or a labeled dictionary of these output values.
     """
 
     assert isinstance(comp, (str, Composition)), \
