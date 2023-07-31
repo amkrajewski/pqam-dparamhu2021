@@ -18,10 +18,8 @@ jobs:
       with:
         r-version: '4.1.0'
 
-    - uses: r-lib/actions/setup-r-dependencies@v2
-      with:
-        extra-packages: |
-          any::locfit
+    - name: Install R dependency
+      run: R -e "install.packages('locfit', repos='http://cran.us.r-project.org')"
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
