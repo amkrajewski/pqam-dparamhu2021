@@ -71,3 +71,7 @@ def cite() -> List[str]:
             "surface energies and intrinsic ductile potency of refractory multicomponent alloys, Acta Materialia, "
             "Volume 210, 2021, 116800, https://doi.org/10.1016/j.actamat.2021.116800."
             ]
+
+if __name__ == "__main__":
+    assert len(sys.argv) == 2
+    print(predict(Composition(sys.argv[1]), outputType="array"))
