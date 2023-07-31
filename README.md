@@ -1,5 +1,11 @@
 # PyQAlloy-compatible Model for D Parameter prediction based on Hu2021
 
+Release: ![PyPI](https://img.shields.io/pypi/v/pqam-dparamhu2021)
+
+Tests: [![small runtime test](https://github.com/amkrajewski/pqam-dparamhu2021/actions/workflows/runtimeTest.yml/badge.svg)](https://github.com/amkrajewski/pqam-dparamhu2021/actions/workflows/runtimeTest.yml)
+
+License: [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
+
 This repository contains a PyQAlloy-compatible compositionalModel, compatible with [ULTERA Database (ultera.org)](https://ultera.org) infrastructure, for D Parameter Prediction Based on [Yong-Jie Hu 2021 (10.1016/j.actamat.2021.116800)](https://doi.org/10.1016/j.actamat.2021.116800) that 
 accepts a chemical formula string of an alloy or a `pymatgen.Composition` object. It return:
 
@@ -36,6 +42,10 @@ In some cases, required `locfit` R package may not be installed automatically. I
 try to go to your R console, typically by typing `R` in your terminal, and install it manually with:
 
     install.packages("locfit")
+
+Or, if you are automating things and need a single-liner, on Mac OS and Linux, the following should work:
+
+    Rscript -e "install.packages('locfit', repos='http://cran.us.r-project.org')"
 
 ## Attribution
 
