@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pqam_dparamhu2021"
-version = "0.1.5"
+version = "0.1.6"
 authors = [
   { name="Adam Krajewski", email="ak@psu.edu" },
 ]
@@ -19,7 +19,7 @@ classifiers = [
     "Topic :: Scientific/Engineering :: Chemistry",
     "Topic :: Scientific/Engineering :: Physics",
 ]
-description = "PyQAlloy-compatible Model for D Parameter prediction based on Hu2021"
+description = "PyQAlloy-compatible Model for D Parameter prediction based on Hu 2021 (10.1016/j.actamat.2021.116800)"
 readme = "README.md"
 
 requires-python = ">=3.9"
