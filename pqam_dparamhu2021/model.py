@@ -65,6 +65,64 @@ def predict(
     else:
         raise ValueError("Not recognized output type requested.")
 
+class Model():
+    def __init__(self):
+        self.base = importr('base')
+        self.utils = importr('utils')
+        self.locfit = importr('locfit')
+
+        with conversion.localconverter(default_converter):
+            self.r = robjects.r
+            self.path = str(resources.files('pqam_dparamhu2021'))
+            self.r['source'](self.path+'/HEA_pred.R')
+            # Initialize the models
+            self.heaPredInit = robjects.globalenv['init']
+            self.heaPredInit(self.path)
+
+        # Load the prediction function
+        self.heaPredFunc = robjects.globalenv['HEA_pred']
+
+    def predict(
+            self,
+            comp: Union[Composition, str],
+            outputType: str = "array") -> Union[dict, list]:
+        """
+        Predicts the GSF, Surf, and resulting D parameter for a given HEA composition in the
+        composition space of (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru) based on Hu's 2021 model (10.1016/j.actamat.2021.116800).
+
+        Args:
+            comp: A composition string which will be cast into pymatgen Composition object or ready Composition object.
+            outputType: A setting to select whether the model will output a minimalistic ordered array of values (default)
+                or dictionary of labeled values. Currently implemented options are ['array', 'dict'] and the first one is
+                default.
+        Returns:
+            A float list representing the predicted GSF, Surf, and D parameter. Or a labeled dictionary of these output values.
+        """
+
+        assert isinstance(comp, (str, Composition)), \
+            "comp must be a string or a pymatgen Composition object."
+        if isinstance(comp, str):
+            comp = Composition(comp)
+
+        assert all([e.symbol in elementsSpace for e in comp.elements]), \
+            "The composition must be in the composition space of (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)."
+
+        compList = [comp.get_atomic_fraction(e) for e in elementsSpace]
+        with conversion.localconverter(default_converter):
+            result = self.heaPredFunc(robjects.FloatVector(compList), self.path)
+        result = list(result)
+
+        assert len(result)==3
+
+        if outputType == "array":
+            return result
+        elif outputType == "dict":
+            return {"gfse": result[0],
+                    "surf": result[1],
+                    "dparam": result[2]}
+        else:
+            raise ValueError("Not recognized output type requested.")
+
 
 def cite() -> List[str]:
     """
