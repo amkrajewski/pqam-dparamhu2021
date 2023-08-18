@@ -1,5 +1,6 @@
 from rpy2.robjects.packages import importr
 import rpy2.robjects as robjects
+from rpy2.robjects import conversion, default_converter
 from pymatgen.core import Composition
 from typing import Union, List
 from importlib import resources
@@ -9,12 +10,13 @@ base = importr('base')
 utils = importr('utils')
 locfit = importr('locfit')
 
-r = robjects.r
-path = str(resources.files('pqam_dparamhu2021'))
-r['source'](path+'/HEA_pred.R')
-# Initialize the models
-heaPredInit = robjects.globalenv['init']
-heaPredInit(path)
+with conversion.localconverter(default_converter):
+    r = robjects.r
+    path = str(resources.files('pqam_dparamhu2021'))
+    r['source'](path+'/HEA_pred.R')
+    # Initialize the models
+    heaPredInit = robjects.globalenv['init']
+    heaPredInit(path)
 
 # Load the prediction function
 heaPredFunc = robjects.globalenv['HEA_pred']
@@ -48,7 +50,8 @@ def predict(
         "The composition must be in the composition space of (Ti,Zr,Hf,V,Nb,Ta,Mo,W,Re,Ru)."
 
     compList = [comp.get_atomic_fraction(e) for e in elementsSpace]
-    result = heaPredFunc(robjects.FloatVector(compList), path)
+    with conversion.localconverter(default_converter):
+        result = heaPredFunc(robjects.FloatVector(compList), path)
     result = list(result)
     
     assert len(result)==3
