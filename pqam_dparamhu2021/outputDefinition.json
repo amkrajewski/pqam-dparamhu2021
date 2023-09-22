@@ -1,0 +1,17 @@
+[
+    {
+        "name": "gsfe",
+        "unit": "J/m^2",
+        "definition": "Genralized Stacking Fault Energy (GSF)"
+    },
+    {
+        "name": "surf",
+        "unit": "J/m^2",
+        "definition": "Surface Energy (Surf)"
+    },
+    {
+        "name": "dparam",
+        "unit": "unitless",
+        "definition": "D Parameter calculated as ratio surf/gfse"
+    }
+]
