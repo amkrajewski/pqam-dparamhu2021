@@ -2,6 +2,8 @@
 
 Release: ![PyPI](https://img.shields.io/pypi/v/pqam-dparamhu2021)
 
+Compatible with: [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/pqam-dparamhu2021)](https://pypi.org/project/pqam-dparamhu2021)
+
 Tests: [![small runtime test](https://github.com/amkrajewski/pqam-dparamhu2021/actions/workflows/runtimeTest.yml/badge.svg)](https://github.com/amkrajewski/pqam-dparamhu2021/actions/workflows/runtimeTest.yml)
 
 License: [![License: LGPL v3](https://img.shields.io/badge/License-LGPL_v3-blue.svg)](https://www.gnu.org/licenses/lgpl-3.0)
@@ -16,7 +18,7 @@ Output Meaning (all based on [10.1016/j.actamat.2021.116800](https://doi.org/10.
 - `surf` - Surface Energy (Surf) [J/m^2]
 - `dparam` - D Parameter [unitless] calculated as `surf/gfse`
 
-
+> Note: The predicted energy is actually the _Unstable_ Stacking Fault Energy, which is the value of GSFE at a spacific high point, but we keep the naming scheme by the original model authors.
 
 ## Install and use
 
