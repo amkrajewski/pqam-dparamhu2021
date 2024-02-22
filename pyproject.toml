@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pqam_dparamhu2021"
-version = "0.1.11"
+version = "0.1.12"
 authors = [
   { name="Adam Krajewski", email="ak@psu.edu" },
 ]
@@ -28,7 +28,7 @@ readme = "README.md"
 
 requires-python = ">=3.9"
 dependencies = [
-    "pymatgen>=2022.1.9,<=2023.9.10",
+    "pymatgen>=2024.2.20",
     "rpy2>=3.5.14",
 ]
 
