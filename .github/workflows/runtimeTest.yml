@@ -19,7 +19,7 @@ jobs:
         r-version: '4.6.1'
 
     - name: Install R dependency
-      run: Rscript -e "install.packages('locfit', repos='http://cran.us.r-project.org')"
+      run: Rscript -e "install.packages('locfit')"
 
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v5
