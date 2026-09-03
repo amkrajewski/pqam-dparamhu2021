@@ -22,7 +22,7 @@ Output Meaning (all based on [10.1016/j.actamat.2021.116800](https://doi.org/10.
 
 ## Install and use
 
-To run this model you will need **Python 3.9+** and **R 4.1.0+** installed on your system, ideally **before** you install
+To run this model you will need **Python 3.10+** and **R 4.6.0+** installed on your system, ideally **before** you install
 this software. For Python, we recommend you use a virtual Conda environment, which chan be created with minimal effort 
 (see [Miniconda install instructions](https://docs.conda.io/en/latest/miniconda.html)). For R, it can be downloaded 
 pre-compiled from a _Comprehensive R Archive Network_ repository (e.g. [Case CRAN](https://cran.case.edu)) and should 
@@ -47,7 +47,9 @@ try to go to your R console, typically by typing `R` in your terminal, and insta
 
 Or, if you are automating things and need a single-liner, on Mac OS and Linux, the following should work:
 
-    Rscript -e "install.packages('locfit', repos='http://cran.us.r-project.org')"
+    Rscript -e "install.packages('locfit')"
+
+If you see error `error: symbol 'R_getVar' not found` it most likely means you are using too old `R` version and need to install `>=4.6.0`.
 
 ## Attribution
 
@@ -83,4 +85,4 @@ its code.
 
 ## Miscellaneous
 
-Last maintenance check: January 22nd, 2024
+Last maintenance check: September 2nd, 2026
